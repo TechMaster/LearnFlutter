@@ -1,0 +1,56 @@
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final title = 'InkWell Demo';
+
+    return MaterialApp(
+      title: title,
+      home: MyHomePage(title: title),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  final String title;
+
+  MyHomePage({Key key, this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(title),
+      ),
+      body: Center(child: MyButton()),
+    );
+  }
+}
+
+class MyButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    // The InkWell Wraps our custom flat button Widget
+    return InkWell(
+      // When the user taps the button, show a snackbar
+      onTap: () {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text('Anh đã ấn vào em'),
+        ));
+      },
+
+      onDoubleTap: () {
+        Scaffold.of(context).showSnackBar(SnackBar(
+          content: Text('Anh đã 2 lần ấn vào em'),
+        ));
+      },
+      child: Container(
+        padding: EdgeInsets.all(12.0),
+        child: Text('Flat Button'),
+      ),
+    );
+  }
+}
